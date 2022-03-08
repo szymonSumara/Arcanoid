@@ -24,7 +24,7 @@
                     
                     objectsToDisplay.push_back(brick);
                 }else{
-                    if(rand() % 10  ==  0 ){
+                    if(rand() % 2  ==  0 ){
                         balls.push_back(new Ball(brick->getMassCenter(),20));
                     }
                 }

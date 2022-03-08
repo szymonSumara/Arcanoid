@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "../components/mapObject.hpp"
 #include <list>
+
 class VisualisationEngine{
     public:
     sf::RenderWindow gameWindow;
@@ -19,7 +20,6 @@ class VisualisationEngine{
         background.setScale( 1, 1 );
     }
 
-
     void visualisationRutine(std::list<MapObject*> objectsToDisplay );
 
     void displayElements(std::list<MapObject*> objectsToDisplay );
@@ -27,8 +27,6 @@ class VisualisationEngine{
     bool windowIsOpen(){
         return gameWindow.isOpen();
     }
-
-
 };
 
 

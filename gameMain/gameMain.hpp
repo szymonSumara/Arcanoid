@@ -9,8 +9,10 @@
 #include "../components/ball.hpp"
 #include "../components/playerBar.hpp"
 #include "../components/brick.hpp"
+
 #define MAP_WIDTH 1376
 #define MAP_HEIGHT 900
+
 class Game{
 
     GameEngine gameEngine;

@@ -12,8 +12,6 @@
         
         if( zdarzenie.type == sf::Event::MouseButtonPressed && zdarzenie.mouseButton.button == sf::Mouse::Middle )
             gameWindow.close();
-        
-
     }
 
     displayElements(objectsToDisplay);

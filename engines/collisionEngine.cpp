@@ -1,11 +1,17 @@
 #include "./collisionEngine.hpp"
 
+double distanceBetweenPoints(sf::Vector2<float> a, sf::Vector2<float> b){
+    return (a.x - b.x)*(a.x - b.x) +  (a.y - b.y)*(a.y - b.y);
+}
+
+
  void CollisionEngine::detectAndHandleColisions(){
         for(Ball * ball:*balls){
             borderBounce(ball);
             playerBarBounce(ball);
             for(Brick * brick:*bricks){
                 if(brick->isReadyToRemove)continue;
+                if(distanceBetweenPoints(ball->getCenter(),brick->getMassCenter()) > (ball->getRadius()*2)*(ball->getRadius()*2))continue;
                 if(isBallTouchBrick(*ball,*brick)){
                     ball->updateMoveVector(
                         calculateNewVector(ball->getCenter(),brick->getMassCenter(),ball->speed)
@@ -33,10 +39,10 @@
             ball->updateMoveVector(sf::Vector2f(moveVector.x ,moveVector.y*(-1)));
         }
 
-        //its only for tests
-        // if(center.y > 900 -radius && moveVector.y > 0){
-        //     ball->updateMoveVector(sf::Vector2f(moveVector.x ,moveVector.y*(-1)));
-        // }
+  //      its only for tests
+        if(center.y > 900 -radius && moveVector.y > 0){
+            ball->updateMoveVector(sf::Vector2f(moveVector.x ,moveVector.y*(-1)));
+        }
 
         if(playerBar->getPosition().x < 0){
             playerBar->move(sf::Vector2f{0,playerBar->getPosition().y} - playerBar->getPosition());      
@@ -46,7 +52,6 @@
             playerBar->move(sf::Vector2f{1376.0f - playerBar->width,playerBar->getPosition().y} - playerBar->getPosition()); 
             
         }
-
     }    
 
     void CollisionEngine::playerBarBounce(Ball *ball){
@@ -69,14 +74,13 @@
         float radius = ball.getRadius();
         sf::Vector2f brickMassCenter = brick.getMassCenter();
 
-        if( abs(ballCenter.x - brickMassCenter.x) < 2*radius
-            &&  abs(ballCenter.y - brickMassCenter.y) < 2*radius){
+        if( abs(ballCenter.x - brickMassCenter.x) < 3*radius
+            &&  abs(ballCenter.y - brickMassCenter.y) < 3*radius){
                 for(sf::Vector2f point: brick.getCornersList()){
                     if(ball.isPointInside(point)){
                         return true;
                     }
                 }
-
         }
 
         return false;
