@@ -40,9 +40,9 @@ double distanceBetweenPoints(sf::Vector2<float> a, sf::Vector2<float> b){
         }
 
   //      its only for tests
-        if(center.y > 900 -radius && moveVector.y > 0){
-            ball->updateMoveVector(sf::Vector2f(moveVector.x ,moveVector.y*(-1)));
-        }
+        // if(center.y > 900 -radius && moveVector.y > 0){
+        //     ball->updateMoveVector(sf::Vector2f(moveVector.x ,moveVector.y*(-1)));
+        // }
 
         if(playerBar->getPosition().x < 0){
             playerBar->move(sf::Vector2f{0,playerBar->getPosition().y} - playerBar->getPosition());      
